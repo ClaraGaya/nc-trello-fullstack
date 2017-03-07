@@ -14,10 +14,13 @@ const List = React.createClass ({
                     
                     <div className="list-cards"> 
                         {this.props.cards.map(function(card,i){
-                            return <Card key={i} text={card}/>
+                            return <Card 
+                                    key={i} 
+                                    text={card}
+                                    />
                         })}
                     </div>
-                    <AddCard addCard={this.props.addCard}/>
+                    <AddCard index ={this.props.index} addCard={this.props.addCard}/>
                 </div>
             </div>
         )

@@ -3,23 +3,34 @@ const React = require('react');
 const AddCard = React.createClass ({
     getInitialState: function() {
         return{
-            cardText: ''
+            cardText: '',
+            open: false
         };
     },
+    showHide:function(e){
+        this.setState({
+            open: !this.state.open
+        })
+    },
     render:function(){
+        const btnShow = this.state.open ? 'hide' : 'show';
+        const divShow = this.state.open ? 'show' : 'hide';
         return(
-            // <a className="add-card">Add new card</a>
-            <div className="add-card">
-                <form onSubmit={this.handleSubmit}>
-                    <input 
-                    className="list-name-input" 
-                    type="text" 
-                    value={this.state.cardText} 
-                    placeholder="Add card text..." 
-                    onChange={this.handleChange}
-                    />
-                    <button>Save</button>
-                </form>
+            <div>
+                <a onClick={this.showHide} className={'add-card ' + btnShow}>Add new card</a>
+                <div className={"add-card " + divShow}>
+                    <form onSubmit={this.handleSubmit}>
+                        <textarea 
+                        className='list-name-input'
+                        type="text" 
+                        value={this.state.cardText} 
+                        placeholder="Add card text..." 
+                        onChange={this.handleChange}
+                        />
+                        <button>Add</button>
+                        <a onClick={this.showHide}><i className="fa fa-times"></i></a>
+                    </form>
+                </div>
             </div>
         )
     },
@@ -30,8 +41,9 @@ const AddCard = React.createClass ({
     },
     handleSubmit:function(event){
         event.preventDefault();
+        const listIndex = this.props.index;
         if (this.state.cardText.length === 0) return;
-        this.props.addCard(this.state.cardText);
+        this.props.addCard(this.state.cardText, listIndex);
         this.setState({
             cardText: ''
         });

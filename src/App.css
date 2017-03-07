@@ -1,7 +1,8 @@
 * { box-sizing: border-box}
-a, a:hover{cursor: auto; outline: 0;}
+a, a:hover, button{cursor: auto; outline: 0;}
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-
+.hide {display: none !important;}
+.show {display: block;}
 body {
     background-color: rgb(0,121,191);
     padding: 0; margin: 0;
@@ -159,7 +160,7 @@ header {
     margin: 5px;
 }
 
-.add-list button{
+button {
     background: #61BD4F;
     box-shadow: 0 1px 0 #3F6F21;
     color: #fff;
@@ -167,12 +168,12 @@ header {
     cursor: pointer;
     display: inline-block;
     font-weight: 700;
-    line-height: 22px;
     margin: 8px 4px 5px;
     padding: 4px 20px;
     text-align: center;
-    min-height: 30px;
-    height: 30px;
+    min-height: 24px;
+    height: 24px;
+    border-radius:3px;
 }
 
 /*addCard*/
@@ -181,11 +182,10 @@ header {
     border-color: transparent;
     box-shadow: none;
     cursor: pointer;
-    margin: 0;
     width: 100%;
     display: block;
     border-radius: 3px;
     padding: 5px;
-    margin: 5px;
+    margin: 5px 0;
     background-color: #fff;
 }
