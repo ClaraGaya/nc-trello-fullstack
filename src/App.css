@@ -1,0 +1,191 @@
+* { box-sizing: border-box}
+a, a:hover{cursor: auto; outline: 0;}
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body {
+    background-color: rgb(0,121,191);
+    padding: 0; margin: 0;
+    font-family: 'Josefine Sans', sans-serif;
+    color: #4d4d4d;
+    font-size: 14px;
+}
+header {
+    background-color: rgba(0,0,0,.15);
+    padding: 5px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.board {
+    overflow: auto;
+    padding: 10px;
+}
+.list-wrapper {
+    width: 270px;
+    margin: 0 5px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+}
+.list {
+    background: #E2E4E6;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
+}
+.list-header {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    position: relative;
+    min-height: 18px;
+    font-weight: bold;
+    padding-right: 34px;
+}
+.list-cards {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 4px;
+    padding: 0 4px;
+    z-index: 1;
+    min-height: 0;
+}
+
+.card {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    max-width: 300px;
+    min-height: 20px;
+    position: relative;
+    z-index: 0;
+}
+.card:hover, .card::active {
+    background-color: #EDEFF0;
+    border-bottom-color: #D6DADC;
+}
+
+.card-details {
+    overflow: hidden;
+    padding: 6px 6px 2px 8px;
+    position: relative;
+    z-index: 10;
+}
+.add-card {
+    border-radius: 0 0 3px 3px;
+    color: #8c8c8c;
+    display: block;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    position: relative;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.add-card:hover {
+    background-color: #CDD2D4;
+    color: #4d4d4d;
+    text-decoration: underline;
+}
+/*add list form*/
+.list-wrapper.mod-add.is-idle {
+    background: rgba(0,0,0,.12);
+    cursor: pointer;
+    color: #fff;
+}
+.list-wrapper.mod-add {
+    height: auto;
+    min-height: 30px;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: #E2E4E6;
+    -webkit-transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+}
+.list-wrapper:last-child {
+    margin-right: 10px;
+}
+.list-wrapper {
+    width: 270px;
+    margin: 0 5px;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.add-list {
+    background: rgba(0,0,0,.12);
+    cursor: pointer;
+    color: #fff;
+}
+.add-list .list-name-input {
+    background: 0 0;
+    border-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    padding: 4px;
+    margin: 5px;
+}
+
+.add-list button{
+    background: #61BD4F;
+    box-shadow: 0 1px 0 #3F6F21;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 8px 4px 5px;
+    padding: 4px 20px;
+    text-align: center;
+    min-height: 30px;
+    height: 30px;
+}
+
+/*addCard*/
+.add-card textarea {
+    background: 0 0;
+    border-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #fff;
+}
