@@ -1,34 +1,49 @@
 {
-  "name": "w05-trello-board",
+  "name": "todosdb",
   "version": "1.0.0",
-  "description": "In this two-day sprint you will be building a [Trello](https://trello.com/) clone. Trello is a popular application for managing tasks and projects, often used in agile software development. We will probably use Trello in our own project later in the course so please sign up with Trello now and explore its functionality.",
-  "main": "index.js",
+  "description": "",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./src",
-    "precommit": "npm run lint",
-    "start": "webpack",
-    "dev": "webpack-dev-server"
+    "start": "webpack && nodemon server.js",
+    "test": "mocha ./server/spec --compilers js:babel-core/register",
+    "dev": "webpack-dev-server",
+    "lint": "eslint ./"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "nodemon": "^1.11.0",
+    "pg-promise": "^5.7.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.4.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "css-loader": "^0.26.2",
-    "eslint": "^3.17.0",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "css-loader": "^0.27.3",
+    "eslint": "^3.17.1",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-react": "^6.10.0",
-    "husky": "^0.13.2",
+    "file-loader": "^0.11.1",
+    "react-logger": "^1.1.0",
+    "redux-logger": "^2.8.2",
     "style-loader": "^0.13.2",
-    "url-loader": "^0.5.8"
-  },
-  "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "webpack": "^2.2.1"
+    "supertest": "^3.0.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   }
 }

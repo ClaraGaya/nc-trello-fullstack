@@ -1,19 +1,21 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-require('./App.css');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import { Provider } from 'react-redux';
+import './assets/css/font-awesome.css';
+import './assets/css/front.css';
 
-const Header = require('./components/Header');
-const Board = require('./components/Board');
+import Board from './components/Board';
 
-const App = React.createClass ({
-    render:function(){
-        return(
-            <div>
-                <Header />
-                <Board />
-            </div>
-        );
-    }
-})
+import reducer from './reducers/reducer';
 
-ReactDOM.render(<App />,document.getElementById('root'));
+const store = createStore(reducer, applyMiddleware(thunk,createLogger()));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Board />
+  </Provider>, 
+  document.getElementById('root')
+);

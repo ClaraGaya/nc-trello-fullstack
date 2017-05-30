@@ -1,5 +1,5 @@
 const React = require('react');
-const logo = require('../img/header-logo.png');
+const logo = require('../assets/img/header-logo.png');
 
 const Header = React.createClass ({
     render:function(){

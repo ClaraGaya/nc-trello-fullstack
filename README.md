@@ -1,61 +1,44 @@
-# React Trello Board
 
-In this two-day sprint you will be building a [Trello](https://trello.com/) clone. Trello is a popular application for managing tasks and projects, often used in agile software development. We will probably use Trello in our own project later in the course so please sign up with Trello now and explore its functionality.
+### Fullstack CRUD app using React and Redux along with an API server
 
-In this sprint, you should aim to implement an MVP (Minimum Viable Product), i.e, a basic prototype with core functionality which can be extended at a later date. A user should be able to create and delete lists, and add, update and delete cards from each list.
+Step one of this project was to set up a database layer in my own machine with postgresql, designing first the database schema.
+In this first version of the project, the user's browser makes a request to localhost:3000, loading the static assets from the Webpack dev server. The user's browser / React then makes requests as needed directly to the API server hosted on localhost:9090 with the following endpoints:
 
-NB. This project should use `webpack` to bundle your work and load CSS and images, and should use `webpack-dev-server` to serve your project. `webpack-dev-server` gives us a 'live reload' which automatically reloads the page when it detects changes in our source files. This will greatly aid your development workflow.
-
-## Objectives
-
-- To get used to using and configuring Webpack to bundle your project and transpile and load code
-
-- To practice *Thinking in React* and planning an application with more complex state
-
-- To carefully consider user interaction and to build an appealing user interface
-
-- To practice using a range of React Event Handlers
-
-- To continue to improve your CSS skills
+#URL	            HTTP  	    Action
+/api/lists	        GET	        Return ALL lists
+/api/lists/:id      GET	        Return a SINGLE list
+/api/list	        POST	    Add a list
+/api/lists/:id	    PUT	        Update a list
+/api/lists/:id	    DELETE	    Delete a list
+/api/tasks	        GET	        Return ALL tasks
+/api/tasks/:id      GET	        Return a SINGLE task
+/api/task	        POST	    Add a task
+/api/tasks/:id	    PUT	        Update a task
+/api/tasks/:id	    DELETE	    Delete a task
 
 
-## Steps
-
-1. Spend some time 'Thinking in React' and planning your component hierarchy and the shape of your state.
-
-2. Initialise your project, creating `src` and `public` directories. Add a boilerplate HTML file to your public directory and create a `js` directory into which you will emit your bundled JavaScript file.
-
-3. Create a simple Webapack configuration that loads JavaScript files in your `src` directory and outputs them into a bundle in `public/js/`. First just test the configuration by console logging something - don't write React code yet.
-
-4. Add the Babel loader to transpile React and ES6 code and create a React component to test the configuration.
-
-5. Add CSS and image loaders and try loading CSS and rendering images to test the configuration. Remember to keep your images and CSS in your `src` directory.
-
-6. Begin working on your application. Start by creating the stateless components you need. Either style them nicely with [Bulma](http://bulma.io/) or write the CSS entirely yourself.
-
-7. Add state into your application, hardcoding it initially.
-
-8. One by one, add the user interaction features. Perhaps begin by adding create/update/delete features on a single list, and then think about allowing for extra lists to be added/deleted.
+### Technoligies used on the backend
+- Express - HTTP utility methods and middleware
+- pg-promise - connection management
+- PostgreSQL - database system
+- Bluebird - promise library
+- Cors - enable Cross-origin resource sharing for a single route
 
 
-## Bonus 
-
-Trello boards have lots of features - here are just a few ideas.
-
-- Add a button to allow a user to move a card up or down a list.
-- Allow a user to change the background color of the page.
-- Allow each list to have an updatable title.
-- Add a dropdown menu on the card to allow a user to move it from one list to another.
-- Allow a user to set a Due By date on each card. If the due date is in the past, visually signal that the card is overdue.
-- Use a library like [Dragula](https://github.com/bevacqua/react-dragula) or [React Drag and Drop Library](http://react-dnd.github.io/react-dnd/) to allow a user to drag cards between lists.
+### Technoligies used on the frontend
+- React 
+- Redux 
+- Axios 
+- Underscore
+- Webpack
 
 
-## Resources
+### Prerequisites
+**Postgresql setup:** To run this project you'll need Install PostgreSQL, set up your database layer and run the file in ./server/db.sql to create the database, apply the schema, and add some data to the newly created database.
+```
+$ createdb todosdb
+$ psql -d todosdb -h localhost -p 5432 -U clara -f db.sql
+```
 
-[Webpack Concepts explained](https://webpack.js.org/concepts/)
-
-[Webpack configuration explained](https://webpack.js.org/configuration/)
-
-[Loading Images in Webpack](http://survivejs.com/webpack/understanding-loaders/loading-images/)
-
-[Advanced Webpack Online Book - recommended for later reading](https://survivejs.com/webpack/introduction/)
+### Next step (v.2)
+Deploying my React app alongside a server to Heroku (and Amazon's S3).
