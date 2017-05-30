@@ -48,12 +48,21 @@ function updateList (req, res, next) {
 
 function deleteList (req, res, next) {
   db.result('DELETE from lists where id = $1', req.params.id)
-  .then( () => {
-    res.status(200)
-    .json({
-      status: 'success',
-      message: `Removed ${res.rowCount} list`
-    });
+  .then( (data) => {
+      if (data.rowCount === 0) {
+        res.status(404)
+        .json({
+          status: 'success',
+          message: `Removed ${res.rowCount} list`
+        });
+      }
+      else {
+        res.status(200)
+        .json({
+          status: 'success',
+          message: `Removed ${res.rowCount} list`
+        });
+      }
   })
   .catch(function (err) {
     return next(err);

@@ -16,3 +16,19 @@ app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
 });
 
+app.use(function (err, req, res, next) {
+    if (err.code === 422) {
+        return res.status(422).json({ error: err.message });
+    }
+    if (err.code === 404) {
+        return res.status(404).json({ error: err.message });
+    }
+    if (err.code === '22P02') {
+        return res.status(422).json({ status: 'Not Found' });
+    }
+    // error 500
+    if (err.code === '23503') {
+        return res.status(422).send({ status: 'Not Found' });
+    }
+    next(err);
+});
