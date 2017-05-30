@@ -13,10 +13,13 @@ class Lists extends Component {
     this.props.getLists();
   }
   render () {
+    console.log(this.props.lists)
     return (
-        <div>
-            Lists
-        </div>
+        <ul>
+            { _.map(this.props.lists.byId, (list,i) => {
+              return <ListCard key={i} {...list}/>
+            })}
+        </ul>
     );
   }
 }

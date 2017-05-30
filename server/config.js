@@ -1,6 +1,6 @@
 module.exports = {
     DB: {
-        dev: process.env.DATABASE_URL || 'postgres://localhost:5432/todosdb_test',
+        dev: process.env.DATABASE_URL || 'postgres://localhost:5432/todosdb',
         test: 'postgres://localhost:5432/todosdb_test'
     }, 
     PORT: {

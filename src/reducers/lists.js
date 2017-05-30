@@ -8,7 +8,7 @@ const initialState = {
 
 function normaliseData (data) {
     return data.reduce(function (acc, item) {
-        acc[item._id] = item;
+        acc[item.id] = item;
         return acc;
     }, {});
 }
@@ -22,7 +22,6 @@ function getLists (prevState = initialState, action) {
   }
 
   if (action.type === types.GET_LISTS_SUCCESS) {
-    newState.byId = action.payload;
     newState.loading = true;
     newState.byId = normaliseData(action.payload); 
   }
