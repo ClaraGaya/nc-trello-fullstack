@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-import { addTask } from '../actions/actions.tasks';
 
 class AddTask extends Component {
     constructor(props) {
@@ -31,6 +28,7 @@ class AddTask extends Component {
     render(){
         const btnShow = this.state.open ? 'hide' : 'show';
         const divShow = this.state.open ? 'show' : 'hide';
+        
         return(
             <div>
                 <a onClick={this.showHide} className={'add-card ' + btnShow}>Add new card</a>
@@ -52,24 +50,4 @@ class AddTask extends Component {
     }   
 }
 
-AddTask.propTypes = {
-  addTask: PropTypes.func,
-  task: PropTypes.object,
-};
-
-function mapDispatchToProps (dispatch) {
-  return {
-    addTask: (text, parentId) => {
-      dispatch(addTask(text, parentId));
-    }
-  };
-}
-
-function mapStateToProps (state) {
-  return {
-    tasks: state.tasks,
-    loading: state.lists.loading,
-    error: state.lists.error
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
+export default AddTask;

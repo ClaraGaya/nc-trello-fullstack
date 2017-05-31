@@ -5,24 +5,34 @@ import {ROOT} from '../../config';
 
 
 // Action creator for geting all the tasks
-export function getTasks (id){
+export function getTasks (){
     return function (dispatch) {
-        dispatch(getTasksRequest(id));
+        dispatch(getTasksRequest());
         axios
-            .get(`${ROOT}/tasks`)
+            .get(`${ROOT}/tasks/`)
             .then(res => {
                 dispatch(getTasksSuccess(res.data.tasks));
-                dispatch(getTasksSuccess(res.data.tasks.filter(
-                    (task) => {
-                        return task.parentTaskID === id;
-                    }
-                )))
             })
             .catch(err => {
                 dispatch(getTasksError(err));
             });
     };
 }
+
+// Action creator for geting all the tasks of a specific list
+// export function getTasksByParentId (parentId){
+//     return function (dispatch) {
+//         dispatch(getTasksRequest(parentId));
+//         axios
+//             .get(`${ROOT}/tasks/${parentId}`)
+//             .then(res => {
+//                 dispatch(getTasksSuccess(res.data.tasks));
+//             })
+//             .catch(err => {
+//                 dispatch(getTasksError(err));
+//             });
+//     };
+// }
 
 export function getTasksRequest () {
     return {
@@ -49,10 +59,9 @@ export function getTasksError (err) {
 export function addTask (text, parentId) {
     return function (dispatch) {
         dispatch(addTaskRequest());
-        axios.post(`${ROOT}/task`, {"body": text, "parentListID": parentId})
-        .then((res) => {
-            dispatch(getTasks());
-        })
+        axios.post(`${ROOT}/task`, {"body": text, "parentId": parentId})
+        .then((res) => { dispatch(addTaskSuccess(res.data));})
+        .then((res) => {dispatch(getTasks());})
         .catch((error) => {
             dispatch(addTaskError(error.message));
         });        

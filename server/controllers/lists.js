@@ -16,6 +16,16 @@ function getLists (req, res) {
     });
 }
 
+function getList (req, res) {
+  db.query(`SELECT * from lists WHERE id=${req.params.id}`)
+    .then(function (data) {
+      res.status(200).json({list: data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
 function addList (req, res, next) {
   db.one('INSERT INTO lists(listName)' + 'VALUES(${listName}) RETURNING id', req.body)
     .then((data) => {
@@ -71,6 +81,7 @@ function deleteList (req, res, next) {
 
 module.exports = {
   getLists: getLists,
+  getList: getList,
   addList: addList,
   updateList: updateList,
   deleteList: deleteList

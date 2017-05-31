@@ -38,7 +38,15 @@ In this first version of the project, the user's browser makes a request to loca
 ```
 $ createdb todosdb
 $ psql -d todosdb -h localhost -p 5432 -U clara -f db.sql
+$ cd spec
+$ createdb todosdb_test
+$ psql -d todosdb_test -h localhost -p 5432 -U clara -f db.test.sql
 ```
+
+and run the following commands on your terminal:
+
+npm start -- to start listening to localhost:3000
+npm run dev -- to run the frontend in localhost:9090
 
 ### Next step (v.2)
 Deploying my React app alongside a server to Heroku (and Amazon's S3).

@@ -13,7 +13,6 @@ class Lists extends Component {
     this.props.getLists();
   }
   render () {
-    console.log(this.props.lists)
     return (
         <ul>
             { _.map(this.props.lists.byId, (list,i) => {

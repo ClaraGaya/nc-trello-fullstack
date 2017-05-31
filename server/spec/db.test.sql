@@ -10,7 +10,7 @@ CREATE TABLE lists (
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
     body varchar(255) NOT NULL,
-    parentListID int NOT NULL
+    parentId int NOT NULL
 );
 
 INSERT INTO lists (listName)

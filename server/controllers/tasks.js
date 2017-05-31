@@ -10,8 +10,18 @@ function getTasks (req, res) {
     });
 }
 
+function getTasksByParentId (req, res) {
+  db.query(`SELECT * from tasks WHERE parentId=${req.params.parent_id}`)
+    .then((data) => {
+      res.status(200).json({tasks: data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
 function addTask (req, res, next) {
-  db.one('INSERT INTO tasks(body, parentListID)' + 'VALUES(${body}, ${parentListID}) RETURNING id', req.body)
+  db.one('INSERT INTO tasks(body, parentId)' + 'VALUES(${body}, ${parentId}) RETURNING id', req.body)
     .then((data) => {
       res.status(200)
       .json({
@@ -26,7 +36,7 @@ function addTask (req, res, next) {
 }
 
 function updateTask (req, res, next) {
-  db.none('UPDATE tasks set body=$1, parentListID=$2 WHERE id=$3', [req.body.body, req.body.parentListID,req.params.id] )
+  db.none('UPDATE tasks set body=$1, parentId=$2 WHERE id=$3', [req.body.body, req.body.parentId,req.params.id] )
     .then( () => {
       res.status(200)
         .json({
@@ -65,6 +75,7 @@ function deleteTask (req, res, next) {
 
 module.exports = {
   getTasks: getTasks,
+  getTasksByParentId: getTasksByParentId,
   addTask: addTask,
   updateTask: updateTask,
   deleteTask: deleteTask

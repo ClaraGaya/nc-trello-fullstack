@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const {getLists, addList, updateList, deleteList} = require('../../server/controllers/lists');
-const {getTasks, addTask, updateTask, deleteTask} = require('../../server/controllers/tasks');
+const {getLists, getList, addList, updateList, deleteList} = require('../../server/controllers/lists');
+const {getTasks, getTasksByParentId, addTask, updateTask, deleteTask} = require('../../server/controllers/tasks');
 
 router.get('/', function (request, response) {
   response.status(200).send({
@@ -10,13 +10,16 @@ router.get('/', function (request, response) {
 
 
 router.get('/lists', getLists);
+router.get('/lists/:id', getList);
+
 router.post('/list', addList);
-router.put('/lists/:id', updateList);
-router.delete('/lists/:id', deleteList);
+router.put('/list/:id', updateList);
+router.delete('/list/:id', deleteList);
 router.get('/tasks', getTasks);
+router.get('/tasks/:parent_id', getTasksByParentId);
 router.post('/task', addTask);
-router.put('/tasks/:id', updateTask);
-router.delete('/tasks/:id', deleteTask);
+router.put('/task/:id', updateTask);
+router.delete('/task/:id', deleteTask);
 
 
 module.exports = router;

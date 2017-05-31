@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 
-import { getTasks } from '../actions/actions.tasks';
+import { getTasks, addTask } from '../actions/actions.tasks';
 import TaskCard from './TaskCard';
 import AddTask from './AddTask';
 
 
-class Lists extends Component {
+class ListCard extends Component {
   componentDidMount () {
     this.props.getTasks();
   }
@@ -21,26 +21,31 @@ class Lists extends Component {
             <p>{this.props.listname}</p>
           </div>
           <ul className="list-cards"> 
-            { _.map(this.props.tasks.byId, (task,i) => {
-            return <TaskCard key={i} {...task} />
-            })}
+              { _.map(this.props.tasks.byId, (task,i) => {
+                if (task.parentid === this.props.id) {
+                  return <TaskCard key={i} {...task}/>
+                }
+              })}
           </ul>
-          {<AddTask parentId={this.props.id} addCard={this.props.addTask}/>}
+          <AddTask parentId={this.props.id} addTask={this.props.addTask}/>
           </div>
       </div>       
     );
   }
 }
 
-Lists.propTypes = {
+ListCard.propTypes = {
   getTasks: PropTypes.func,
   tasks: PropTypes.object,
 };
 
 function mapDispatchToProps (dispatch) {
   return {
-    getTasks: (id) => {
-      dispatch(getTasks(id));
+    getTasks: () => {
+      dispatch(getTasks());
+    },
+    addTask: (text, parentId) => {
+      dispatch(addTask(text, parentId));
     }
   };
 }
@@ -48,8 +53,8 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state) {
   return {
     tasks: state.tasks,
-    loading: state.lists.loading,
-    error: state.lists.error
+    loading: state.tasks.loading,
+    error: state.tasks.error
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Lists);
+export default connect(mapStateToProps, mapDispatchToProps)(ListCard);
