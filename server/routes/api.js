@@ -11,12 +11,11 @@ router.get('/', function (request, response) {
 
 router.get('/lists', getLists);
 router.get('/lists/:id', getList);
-
 router.post('/list', addList);
 router.put('/list/:id', updateList);
 router.delete('/list/:id', deleteList);
 router.get('/tasks', getTasks);
-router.get('/tasks/:parent_id', getTasksByParentId);
+router.get('/lists/:id/tasks', getTasksByParentId);
 router.post('/task', addTask);
 router.put('/task/:id', updateTask);
 router.delete('/task/:id', deleteTask);

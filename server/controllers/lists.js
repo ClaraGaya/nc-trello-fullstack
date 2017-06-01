@@ -8,8 +8,9 @@ const { db } = require('../db.config');
 
 function getLists (req, res) {
   db.query('SELECT * from lists')
-    .then(function (rows) {
-      res.status(200).json({lists: rows});
+    .then( (data) => {
+      res.status(200)
+      .json({lists: data});
     })
     .catch(function (error) {
       console.log(error);
@@ -18,8 +19,12 @@ function getLists (req, res) {
 
 function getList (req, res) {
   db.query(`SELECT * from lists WHERE id=${req.params.id}`)
-    .then(function (data) {
-      res.status(200).json({list: data});
+    .then( (data) => {
+      res.status(200)
+      .json({
+        listName: data[0].listName,
+        id: data[0].id
+      })
     })
     .catch(function (error) {
       console.log(error);
@@ -27,7 +32,7 @@ function getList (req, res) {
 }
 
 function addList (req, res, next) {
-  db.one('INSERT INTO lists(listName)' + 'VALUES(${listName}) RETURNING id', req.body)
+  db.one('INSERT INTO lists(listName) VALUES(${listName}) RETURNING id', req.body)
     .then((data) => {
       res.status(201)
       .json({
@@ -59,18 +64,20 @@ function updateList (req, res, next) {
 function deleteList (req, res, next) {
   db.result('DELETE from lists where id = $1', req.params.id)
   .then( (data) => {
-      if (data.rowCount === 0) {
+        if (data.rowCount === 0) {
         res.status(404)
         .json({
           status: 'success',
-          message: `Removed ${res.rowCount} list`
+          message: `Removed 0 tasks`,
+          rowCount: 0
         });
       }
       else {
         res.status(200)
         .json({
           status: 'success',
-          message: `Removed ${res.rowCount} list`
+          message: `Removed ${data.rowCount} list`,
+          rowCount: data.rowCount
         });
       }
   })

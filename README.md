@@ -4,17 +4,18 @@
 Step one of this project was to set up a database layer in my own machine with postgresql, designing first the database schema.
 In this first version of the project, the user's browser makes a request to localhost:3000, loading the static assets from the Webpack dev server. The user's browser / React then makes requests as needed directly to the API server hosted on localhost:9090 with the following endpoints:
 
-#URL	            HTTP  	    Action
-/api/lists	        GET	        Return ALL lists
-/api/lists/:id      GET	        Return a SINGLE list
-/api/list	        POST	    Add a list
-/api/lists/:id	    PUT	        Update a list
-/api/lists/:id	    DELETE	    Delete a list
-/api/tasks	        GET	        Return ALL tasks
-/api/tasks/:id      GET	        Return a SINGLE task
-/api/task	        POST	    Add a task
-/api/tasks/:id	    PUT	        Update a task
-/api/tasks/:id	    DELETE	    Delete a task
+#URL	                HTTP  	    Action
+/api/lists	            GET	        Return ALL lists
+/api/lists/:id          GET	        Return a SINGLE list
+/api/lists/:id/tasks    GET	        Return a list's tasks
+/api/list	            POST	    Add a list
+/api/list/:id	        PUT	        Update a list
+/api/list/:id	        DELETE	    Delete a list
+/api/tasks	            GET	        Return ALL tasks
+/api/tasks/:id          GET	        Return a SINGLE task
+/api/task	            POST	    Add a task
+/api/task/:id	        PUT	        Update a task
+/api/task/:id	        DELETE	    Delete a task
 
 
 ### Technoligies used on the backend
