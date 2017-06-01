@@ -3,9 +3,9 @@ import React from 'react';
 
 const TaskCard = function (props) {
   return (
-    <article>
+    <li>
       <p>{props.body}</p>
-    </article>
+    </li>
   );
 };
 

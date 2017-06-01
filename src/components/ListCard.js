@@ -15,21 +15,21 @@ class ListCard extends Component {
   }
   render () {
     return (
-      <div className="list-wrapper">
-        <div className="list">
+      <section className="list-wrapper">
+        <article className="list">
           <div className="list-header">
             <p>{this.props.listname}</p>
           </div>
           <ul className="list-cards"> 
-              { _.map(this.props.tasks.byId, (task,i) => {
-                if (task.parentid === this.props.id) {
-                  return <TaskCard key={i} {...task}/>
-                }
-              })}
+            { _.map(this.props.tasks.byId, (task,i) => {
+            if (task.parentid === this.props.id) {
+            return <TaskCard key={i} {...task}/>
+            }
+            })}
           </ul>
           <AddTask parentId={this.props.id} addTask={this.props.addTask}/>
-          </div>
-      </div>       
+        </article>
+      </section>
     );
   }
 }

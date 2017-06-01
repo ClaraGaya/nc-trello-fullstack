@@ -14,11 +14,11 @@ class Lists extends Component {
   }
   render () {
     return (
-        <ul>
+        <main>
             { _.map(this.props.lists.byId, (list,i) => {
               return <ListCard key={i} {...list}/>
             })}
-        </ul>
+        </main>
     );
   }
 }
