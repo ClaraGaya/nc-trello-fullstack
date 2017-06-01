@@ -13,51 +13,47 @@ function normaliseData (data) {
     }, {});
 }
 
-function getTasks (prevState = initialState, action) {
+function reducerTasks (prevState = initialState, action) {
   const newState = Object.assign({}, prevState);
-
-  if (action.type === types.GET_TASKS_REQUEST) {
-    newState.loading = true;
-    newState.error = null;
-  }
-
-  if (action.type === types.GET_TASKS_SUCCESS) {
-    newState.loading = true;
-    newState.byId = normaliseData(action.payload); 
-  }
-
-  if (action.type === types.GET_TASKS_ERROR) {
-    newState.error = action.payload;
-    newState.loading = false;
-  }
   
-  return newState;
+  switch (action.type) {
+    case types.GET_TASKS_REQUEST: {
+      newState.loading = true;
+      newState.error = null;
+      return newState;
+    }
+    case types.GET_TASKS_SUCCESS: {
+      newState.loading = true;
+      newState.byId = normaliseData(action.payload); 
+      return newState;
+    }
+    case types.GET_TASKS_ERROR: {
+      newState.error = action.payload;
+      newState.loading = false;
+      return newState;
+    }    
+    case types.ADD_TASK_REQUEST: {
+      newState.loading = true;
+      newState.error = null;
+      return newState;
+    }
+    case types.ADD_TASK_SUCCESS: {
+      const id = action.payload.id;
+      newState.byId[id] = Object.assign({}, newState.byId[id], action.payload);
+      return newState;
+    }
+    case types.ADD_TASK_ERROR: {
+      newState.error = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+    case types.REMOVE_TASK_ERROR: {
+      newState.error = action.payload;
+      newState.loading = false;
+      return newState;
+    }
+    default: return prevState;
+  }
 }
 
-function addTasks (prevState = initialState, action) {
-  const newState = Object.assign({}, prevState);
-
-  if (action.type === types.ADD_TASK_REQUEST) {
-    newState.loading = true;
-    newState.error = null;
-  }
-
-  if (action.type === types.ADD_TASK_SUCCESS) {
-    const id = action.payload.id;
-    newState.byId[id] = Object.assign({}, newState.byId[id], action.payload);
-  }
-
-  if (action.type === types.ADD_TASK_ERROR) {
-    newState.error = action.payload;
-    newState.loading = false;
-  }
-
-  if (action.type === types.REMOVE_TASK_ERROR) {
-    newState.error = action.payload;
-    newState.loading = false;
-  }
-  
-  return newState;
-}
-
-export default getTasks;
+export default reducerTasks;

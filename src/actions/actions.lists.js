@@ -4,7 +4,7 @@ import axios from 'axios';
 import {ROOT} from '../../config';
 
 
-// Action creator for geting all the articles
+// Action creator for geting all the lists
 export function getLists (){
     return function (dispatch) {
         dispatch(getListsRequest());
@@ -44,66 +44,99 @@ export function getListsError (err) {
 export function addList (listName) {
     return function (dispatch) {
         dispatch(addListRequest());
-        axios.post(`${ROOT}/list`, {"list": listName})
-        .then((res) => {
-            dispatch(addListSuccess(res.data.list));
-        })
+        axios.post(`${ROOT}/list`, {"listName": listName})
+        .then((res) => { dispatch(addListSuccess(res.data)) })
+        .then((res) => { dispatch(getLists()) })
         .catch((error) => {
             dispatch(addListError(error.message));
         });        
     };
 }
 
-function addListRequest () {
+export function addListRequest () {
     return {
         type: types.ADD_LIST_REQUEST
     };
 }
 
-function addListSuccess (comment) {
+export function addListSuccess (list) {
     return {
         type: types.ADD_LIST_SUCCESS,
         payload: list
     };
 }
 
-function addListError (error) {
+export function addListError (err) {
     return {
         type: types.ADD_LIST_ERROR,
-        error
+        error: err
+    };
+}
+
+
+// Action creator for adding lists
+export function updateList (listName, id) {
+    return function (dispatch) {
+        dispatch(updateListRequest());
+        axios.put(`${ROOT}/list/${id}`, {"listName": listName })
+        .then((res) => { dispatch(updateListSuccess(res.data)) })
+        .then((res) => { dispatch(getLists()) })
+        .catch((error) => {
+            dispatch(updateListError(error.message));
+        });        
+    };
+}
+
+export function updateListRequest () {
+    return {
+        type: types.UPDATE_LIST_REQUEST
+    };
+}
+
+export function updateListSuccess (list) {
+    return {
+        type: types.UPDATE_LIST_SUCCESS,
+        payload: list
+    };
+}
+
+export function updateListError (err) {
+    return {
+        type: types.UPDATE_LIST_ERROR,
+        error: err
     };
 }
 
 // Action creator for removing lists
-export function removeList (id) {
+export function deleteList (id) {
     return function (dispatch) {
-        dispatch(removeListRequest());
+        dispatch(deleteListRequest());
         axios.delete(`${ROOT}/lists/${id}`)
         .then((res) => {
             dispatch(getLists());
         })
         .catch((error) => {
-            dispatch(removeListError(error.message));
+            dispatch(deleteListError(error.message));
         });        
     };
 }
 
-function removeListRequest () {
+export function deleteListRequest () {
     return {
-        type: types.REMOVE_LIST_REQUEST
+        type: types.DELETE_LIST_REQUEST
     };
 }
 
-function removeListSuccess (comment) {
+export function deleteListSuccess (list) {
     return {
-        type: types.REMOVE_LIST_SUCCESS,
+        type: types.DELETE_LIST_SUCCESS,
         payload: list
     };
 }
 
-function removeListError (error) {
+export function deleteListError (error) {
     return {
-        type: types.REMOVE_LIST_ERROR,
+        type: types.DELETE_LIST_ERROR,
         error
     };
 }
