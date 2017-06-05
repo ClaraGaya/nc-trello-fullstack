@@ -106,14 +106,12 @@ export function updateTaskError (err) {
     };
 }
 
-// Action creator for removing lists
+// Action creator for removing tasks
 export function deleteTask (id) {
     return function (dispatch) {
-        dispatch(deleteTaskRequest());
-        axios.delete(`${ROOT}/tasks/${id}`)
-        .then((res) => {
-            dispatch(getTasks());
-        })
+        dispatch(deleteTaskRequest(id));
+        axios.delete(`${ROOT}/task/${id}`)
+        .then((res) => {dispatch(deleteTaskSuccess(id))})
         .catch((error) => {
             dispatch(deleteTaskError(error.message));
         });        
@@ -126,10 +124,10 @@ export function deleteTaskRequest () {
     };
 }
 
-export function deleteTaskSuccess (task) {
+export function deleteTaskSuccess (id) {
     return {
         type: types.DELETE_TASK_SUCCESS,
-        payload: task
+        payload: id
     };
 }
 

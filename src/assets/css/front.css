@@ -23,6 +23,16 @@ header {
 .board {
     overflow: auto;
     padding: 10px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 .list-wrapper {
     width: 270px;
@@ -56,7 +66,7 @@ header {
     position: relative;
     min-height: 18px;
     font-weight: bold;
-    padding-right: 34px;
+    /*padding-right: 34px;*/
 }
 .list-cards {
     -webkit-box-flex: 1;
@@ -70,7 +80,6 @@ header {
     z-index: 1;
     min-height: 0;
 }
-
 .card {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
@@ -86,7 +95,6 @@ header {
     background-color: #EDEFF0;
     border-bottom-color: #D6DADC;
 }
-
 .card-details {
     overflow: hidden;
     padding: 6px 6px 2px 8px;
@@ -115,20 +123,6 @@ header {
     text-decoration: underline;
 }
 /*add list form*/
-.list-wrapper.mod-add.is-idle {
-    background: rgba(0,0,0,.12);
-    cursor: pointer;
-    color: #fff;
-}
-.list-wrapper.mod-add {
-    height: auto;
-    min-height: 30px;
-    padding: 4px;
-    border-radius: 3px;
-    background-color: #E2E4E6;
-    -webkit-transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
-    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
-}
 .list-wrapper:last-child {
     margin-right: 10px;
 }
@@ -142,23 +136,23 @@ header {
     vertical-align: top;
     white-space: nowrap;
 }
-
-.add-list {
+.list-wrapper > .add-list {
+    border-radius: 3px;
     background: rgba(0,0,0,.12);
     cursor: pointer;
-    color: #fff;
+    color: rgba(255,255,255,.7);
+    -webkit-transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+    transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
 }
-.add-list .list-name-input {
-    background: 0 0;
-    border-color: transparent;
-    box-shadow: none;
-    cursor: pointer;
-    margin: 0;
-    width: 100%;
-    display: block;
-    border-radius: 3px;
-    padding: 4px;
-    margin: 5px;
+.add-list .add-card:hover {
+    background: rgba(0,0,0,.3);
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+}
+.add-list .add-card ~ .add-card.show {
+    background: #E2E4E6;
+    color: #8c8c8c;
+    text-decoration: none;
 }
 
 button {
@@ -178,7 +172,7 @@ button {
 }
 
 /*addCard*/
-.add-card textarea {
+.add-card textarea, .add-list textarea {
     background: 0 0;
     border-color: transparent;
     box-shadow: none;
@@ -189,4 +183,7 @@ button {
     padding: 5px;
     margin: 5px 0;
     background-color: #fff;
+}
+.delete {
+    float: right;
 }

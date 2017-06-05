@@ -110,11 +110,9 @@ export function updateListError (err) {
 // Action creator for removing lists
 export function deleteList (id) {
     return function (dispatch) {
-        dispatch(deleteListRequest());
-        axios.delete(`${ROOT}/lists/${id}`)
-        .then((res) => {
-            dispatch(getLists());
-        })
+        dispatch(deleteListRequest(id));
+        axios.delete(`${ROOT}/list/${id}`)
+        .then((res) => {dispatch(deleteListSuccess(id))})
         .catch((error) => {
             dispatch(deleteListError(error.message));
         });        
@@ -127,10 +125,10 @@ export function deleteListRequest () {
     };
 }
 
-export function deleteListSuccess (list) {
+export function deleteListSuccess (id) {
     return {
         type: types.DELETE_LIST_SUCCESS,
-        payload: list
+        payload: id
     };
 }
 
