@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack && nodemon server.js",
-    "test": "mocha ./src/spec --compilers js:babel-core/register",
-    "test2": "mocha ./src/spec --compilers js:babel-core/register && mocha ./server/spec --compilers js:babel-core/register",
+    "test": "mocha ./src/spec --compilers js:babel-core/register && mocha ./server/spec --compilers js:babel-core/register",
     "dev": "webpack-dev-server",
     "lint": "eslint ./"
   },
