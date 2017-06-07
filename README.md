@@ -49,5 +49,7 @@ and run the following commands on your terminal:
 npm start -- to start listening to localhost:3000
 npm run dev -- to run the frontend in localhost:9090
 
-### Next step (v.2)
-Deploying my React app alongside a server to Heroku (and Amazon's S3).
+### Deployment
+Heroku + Heroku Postgres :: Database
+Frontend https://nctrello-app.herokuapp.com/
+Backend https://nctrello-api.herokuapp.com/api
