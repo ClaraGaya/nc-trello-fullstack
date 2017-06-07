@@ -51,5 +51,5 @@ npm run dev -- to run the frontend in localhost:9090
 
 ### Deployment
 Heroku + Heroku Postgres :: Database
-Frontend https://nctrello-app.herokuapp.com/
-Backend https://nctrello-api.herokuapp.com/api
+Frontend [nctrello-app.herokuapp.com] (https://nctrello-app.herokuapp.com/)
+Backend [nctrello-api.herokuapp.com/api] (https://nctrello-api.herokuapp.com/api)
