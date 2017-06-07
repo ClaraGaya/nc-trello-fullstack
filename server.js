@@ -1,8 +1,9 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
+const PORT = require('./server/config').PORT[process.env.NODE_ENV] || process.env.PORT;
+
+
 const express = require('express');
 const app = express();
-const config = require('./server/config');
-const PORT = config.PORT[process.env.NODE_ENV];
 const apiRoutes = require('./server/routes/api');
 const cors = require('cors');
 const bodyParser = require("body-parser");
