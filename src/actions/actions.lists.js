@@ -1,7 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
 
-import {ROOT} from '../../config';
+import {ROOT} from '../config';
 
 
 // Action creator for geting all the lists

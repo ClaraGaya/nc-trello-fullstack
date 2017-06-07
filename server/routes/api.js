@@ -2,23 +2,20 @@ const router = require('express').Router();
 const {getLists, getList, addList, updateList, deleteList} = require('../../server/controllers/lists');
 const {getTasks, getTasksByParentId, addTask, updateTask, deleteTask} = require('../../server/controllers/tasks');
 
-router.get('/', function (request, response) {
-  response.status(200).send({
-    status: 'OK'
-  });
+router.route('/').get((request, response) => {
+  response.status(200).send({ status: 'OK' });
 });
 
-
-router.get('/lists', getLists);
-router.get('/lists/:id', getList);
-router.post('/list', addList);
-router.put('/list/:id', updateList);
-router.delete('/list/:id', deleteList);
-router.get('/tasks', getTasks);
-router.get('/lists/:id/tasks', getTasksByParentId);
-router.post('/task', addTask);
-router.put('/task/:id', updateTask);
-router.delete('/task/:id', deleteTask);
+router.route('/lists').get(getLists);
+router.route('/lists/:id').get(getList);
+router.route('/list').post(addList);
+router.route('/list/:id').put(updateList);
+router.route('/list/:id').delete(deleteList);
+router.route('/tasks').get(getTasks);
+router.route('/lists/:id/tasks').get(getTasksByParentId);
+router.route('/task').post(addTask);
+router.route('/task/:id').put(updateTask);
+router.route('/task/:id').delete(deleteTask);
 
 
 module.exports = router;
