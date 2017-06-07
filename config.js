@@ -1,4 +1,4 @@
 module.exports = {
-  ROOT: process.env.DATABASE_URL  || 'http://localhost:3000/api',
+  ROOT: 'https://nctrello-app.herokuapp.com/api'  || 'http://localhost:3000/api',
   USERNAME: 'clara'
 };
