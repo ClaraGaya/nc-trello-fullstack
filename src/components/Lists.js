@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+import dragula from 'react-dragula';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -11,11 +14,12 @@ import AddList from './AddList';
 class Lists extends Component {
   componentDidMount () {
     this.props.getLists();
+    var board = ReactDOM.findDOMNode(this);
+    dragula([board]);
   }
   render () {
-    console.log(this.props)
     return (
-        <main className="board">
+        <main className="board" ref={this.dragulaDecorator}>
             { _.map(this.props.lists.byId, (list,i) => {
               return <ListCard key={i} {...list}/>
             })}

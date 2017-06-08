@@ -187,3 +187,76 @@ button {
 .delete {
     float: right;
 }
+
+
+
+
+/* dragula-specific example page styles */
+
+.wrapper {
+  display: table;
+}
+.container {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+.container div,
+.gu-mirror {
+  padding: 10px;
+  transition: opacity 0.4s ease-in-out;
+}
+.container div {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  margin-bottom: 10px;
+}
+.gu-mirror {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.handle {
+  padding: 0 5px;
+  margin-right: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: move;
+}
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -ms-transform: rotate(6deg); 
+  -webkit-transform: rotate(6deg); 
+  transform: rotate(6deg);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+.gu-transit .list {
+    background-color: rgba(0,0,0,.5);
+    color:transparent;
+}
+.gu-transit .add-card {
+    color:transparent;
+}
+
+
