@@ -27,12 +27,12 @@ class ListCard extends Component {
       <section className="list-wrapper">
         <article className="list">
           <div className="list-header">
-            <p>
+            <p className="handle-list">
               {this.props.listname}
               <a onClick={this.handleSubmit} className="delete"><i className="fa fa-times"></i></a>
             </p>
           </div>
-          <ul className="list-cards"> 
+          <ul className="list-cards cardsContainer"> 
             { _.map(this.props.tasks.byId, (task,i) => {
             if (task.parentid === this.props.id) {
             return <TaskCard key={i} {...task}/>

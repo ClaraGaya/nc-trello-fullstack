@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-import dragula from 'react-dragula';
 import PropTypes from 'prop-types';
+
+import dragula from 'react-dragula'
 
 import { connect } from 'react-redux';
 import _ from 'underscore';
@@ -14,14 +14,24 @@ import AddList from './AddList';
 class Lists extends Component {
   componentDidMount () {
     this.props.getLists();
-    var board = ReactDOM.findDOMNode(this);
-    dragula([board]);
-  }
+    dragula({
+      isContainer: function (el) {
+        return el.classList.contains('cardsContainer');
+      }
+    })
+    const board = ReactDOM.findDOMNode(this);
+    dragula([board], {
+      moves: function (el, container, handle) {
+        return handle.classList.contains('handle-list');
+      }
+    });
+  };
+  
   render () {
     return (
         <main className="board" ref={this.dragulaDecorator}>
             { _.map(this.props.lists.byId, (list,i) => {
-              return <ListCard key={i} {...list}/>
+              return <ListCard key={i} {...list} ref={this.cardsContainer}/>
             })}
             <AddList addList={this.props.addList}/>
         </main>

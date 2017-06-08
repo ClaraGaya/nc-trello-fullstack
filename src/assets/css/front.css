@@ -99,7 +99,6 @@ header {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
   filter: alpha(opacity=70);
 }
-.card p { margin: 0;}
 .card-details {
     overflow: hidden;
     padding: 6px 6px 2px 8px;

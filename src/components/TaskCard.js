@@ -17,10 +17,8 @@ class TaskCard extends Component {
   render(){
     return (
       <li className="card">
-        <p>
-          {this.props.body}
-          <a onClick={this.handleSubmit}  className="delete"><i className="fa fa-times"></i></a>
-        </p>
+        {this.props.body}
+        <a onClick={this.handleSubmit}  className="delete"><i className="fa fa-times"></i></a>
       </li>
     );
   }
